@@ -1,22 +1,32 @@
 import Link from "next/link";
 
-// Homepage introducing the website
+// Homepage for Explore Countries
 export default function HomePage() {
   return (
-    <section>
+    <section className="home">
       <h1>Explore the World 🌍</h1>
 
       <p>
-        Welcome to Explore Countries! Discover interesting information about
-        countries around the world.
+        Welcome to Explore Countries, a simple travel guide where you can
+        discover information about countries around the world.
       </p>
 
       <p>
-        Whether you are planning a trip or simply curious, this website helps
-        you explore different places.
+        Whether you are planning your next trip or just curious, you can explore
+        different places and learn something new.
       </p>
 
-      <Link href="/countries">Explore Countries →</Link>
+      <h2>What can you discover?</h2>
+
+      <ul>
+        <li>Learn about countries and their regions.</li>
+        <li>Explore country flags and basic information.</li>
+        <li>Find inspiration for your next adventure.</li>
+      </ul>
+
+      <Link href="/countries" className="explore-button">
+        Explore Countries →
+      </Link>
     </section>
   );
 }

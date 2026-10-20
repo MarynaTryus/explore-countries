@@ -1,16 +1,17 @@
 import Link from "next/link";
-import type { Country } from "@/types/country";
+import type { Country } from "../../types/country";
+import styles from "./countrycard.module.css";
 
 type CountryCardProps = {
   country: Country;
 };
 
-// Reusable card for one country
+// Display information about one country
 export default function CountryCard({ country }: CountryCardProps) {
   return (
-    <article className="country-card">
-      <div className="country-flag" aria-hidden="true">
-        {country.flag.emoji}
+    <article className={styles.card}>
+      <div className={styles.flag} aria-hidden="true">
+        {country.flag?.emoji || "🌍"}
       </div>
 
       <h2>{country.names.common}</h2>

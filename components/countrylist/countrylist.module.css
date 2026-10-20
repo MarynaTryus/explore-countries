@@ -1,0 +1,41 @@
+/* Countries grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+  margin-top: 32px;
+}
+
+/* Number of visible countries */
+.count {
+  margin: 24px auto 12px;
+  text-align: center;
+  color: var(--text);
+}
+
+/* Show more button */
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.showMoreButton {
+  padding: 12px 28px;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.showMoreButton:hover {
+  background-color: var(--primary-dark);
+}
+
+.showMoreButton:focus-visible {
+  outline: 3px solid var(--primary-dark);
+  outline-offset: 4px;
+}

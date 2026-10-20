@@ -1,11 +1,12 @@
 import Link from "next/link";
+import styles from "./header.module.css";
 
-// Shared navigation displayed on every page
+// Navigation shown on every page
 export default function Header() {
   return (
-    <header>
-      <nav aria-label="Main navigation">
-        <Link href="/">Explore Countries 🌍</Link>
+    <header className={styles.header}>
+      <nav className={styles.nav} aria-label="Main navigation">
+        <Link href="/">Explore Countries</Link>
 
         <ul>
           <li>

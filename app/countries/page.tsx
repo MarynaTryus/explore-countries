@@ -1,16 +1,24 @@
-import { getCountries } from "@/lib/api";
-import CountryCard from "@/components/countrycard/countrycard";
-import type { Country } from "@/types/country";
+import { getCountries } from "../../lib/api";
+import CountryList from "../../components/countrylist/countrylist";
 
-// Display countries from the API
+// Page with countries from the API
 export default async function CountriesPage() {
-  let countries: Country[];
-
   try {
-    countries = await getCountries();
-  } catch (error) {
-    console.error("Failed to load countries:", error);
+    const countries = await getCountries();
 
+    return (
+      <section>
+        <h1>Explore Countries</h1>
+
+        <p>
+          Discover countries from around the world. Select a country to learn
+          more.
+        </p>
+
+        <CountryList countries={countries} />
+      </section>
+    );
+  } catch {
     return (
       <section>
         <h1>Explore Countries</h1>
@@ -18,21 +26,4 @@ export default async function CountriesPage() {
       </section>
     );
   }
-
-  return (
-    <section>
-      <h1>Explore Countries 🌍</h1>
-
-      <p>
-        Discover countries around the world. Here are some countries to start
-        exploring.
-      </p>
-
-      <div className="countries-grid">
-        {countries.map((country) => (
-          <CountryCard key={country.codes.alpha_2} country={country} />
-        ))}
-      </div>
-    </section>
-  );
 }

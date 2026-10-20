@@ -1,0 +1,21 @@
+/* Country card */
+.card {
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.card h2 {
+  font-size: 1.3rem;
+  margin: 12px 0 8px;
+}
+
+.card p {
+  margin: 0 0 16px;
+}
+
+.flag {
+  font-size: 3rem;
+  line-height: 1.2;
+}

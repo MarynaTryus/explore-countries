@@ -1,9 +1,10 @@
 import Link from "next/link";
+import styles from "./page.module.css";
 
 // Homepage for Explore Countries
 export default function HomePage() {
   return (
-    <section className="home">
+    <section className={styles.home}>
       <h1>Explore the World 🌍</h1>
 
       <p>
@@ -24,7 +25,7 @@ export default function HomePage() {
         <li>Find inspiration for your next adventure.</li>
       </ul>
 
-      <Link href="/countries" className="explore-button">
+      <Link href="/countries" className={styles.exploreButton}>
         Explore Countries →
       </Link>
     </section>

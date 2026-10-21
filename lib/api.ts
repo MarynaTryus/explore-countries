@@ -1,4 +1,4 @@
-import type { Country } from "../types/country";
+import type { Country, CountryDetails } from "../types/country";
 
 type CountriesResponse = {
   data: {
@@ -37,4 +37,41 @@ export async function getCountries(): Promise<Country[]> {
   const result: CountriesResponse = await response.json();
 
   return result.data.objects;
+}
+
+// Fetch one country by its two-letter code
+export async function getCountryByCode(
+  code: string
+): Promise<CountryDetails | null> {
+  const apiKey = process.env.REST_COUNTRIES_API_KEY;
+
+  if (!apiKey) {
+    throw new Error("REST Countries API key is missing");
+  }
+
+  const url =
+    "https://api.restcountries.com/countries/v5/codes.alpha_2/" +
+    encodeURIComponent(code) +
+    "?response_fields=names.common,codes.alpha_2,flag.emoji,region,subregion,capitals,population,timezones";
+
+  const response = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+    },
+    next: {
+      revalidate: 3600,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`API error ${response.status}`);
+  }
+
+  const result: {
+    data: {
+      objects: CountryDetails[];
+    };
+  } = await response.json();
+
+  return result.data.objects[0] ?? null;
 }

@@ -11,3 +11,13 @@ export type Country = {
   };
   region: string;
 };
+
+// Extra information for a country details page
+export type CountryDetails = Country & {
+  capitals?: {
+    name: string;
+  }[];
+  population?: number;
+  subregion?: string;
+  timezones?: string[];
+};

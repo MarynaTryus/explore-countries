@@ -39,3 +39,41 @@
   outline: 3px solid var(--primary-dark);
   outline-offset: 4px;
 }
+
+/* Country search */
+.searchContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 400px;
+  margin-top: 32px;
+}
+
+.searchContainer label {
+  font-weight: bold;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background-color: var(--white);
+  color: var(--text);
+  font: inherit;
+}
+
+.searchInput:focus {
+  border-color: var(--primary);
+}
+
+.searchInfo {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.noResults {
+  margin-top: 32px;
+  font-weight: bold;
+}

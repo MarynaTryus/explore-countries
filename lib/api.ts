@@ -6,7 +6,7 @@ type CountriesResponse = {
   };
 };
 
-// Fetch a list of countries from the external API
+// Fetch all countries from the API
 export async function getCountries(): Promise<Country[]> {
   const apiKey = process.env.REST_COUNTRIES_API_KEY;
 
@@ -14,29 +14,44 @@ export async function getCountries(): Promise<Country[]> {
     throw new Error("REST Countries API key is missing");
   }
 
-  const url =
-    "https://api.restcountries.com/countries/v5" +
-    "?limit=100&response_fields=names.common,codes.alpha_2,flag.emoji,region";
+  const allCountries: Country[] = [];
+  const limit = 100;
+  let offset = 0;
 
-  const response = await fetch(url, {
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-    },
-    next: {
-      revalidate: 3600,
-    },
-  });
+  while (true) {
+    const url =
+      "https://api.restcountries.com/countries/v5" +
+      `?limit=${limit}&offset=${offset}` +
+      "&response_fields=names.common,codes.alpha_2,flag.emoji,region";
 
-  if (!response.ok) {
-    const errorText = await response.text();
+    const response = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+      },
+      next: {
+        revalidate: 3600,
+      },
+    });
 
-    // Show the HTTP status and API error for debugging
-    throw new Error(`API error ${response.status}: ${errorText}`);
+    if (!response.ok) {
+      throw new Error(`API error ${response.status}`);
+    }
+
+    const result: CountriesResponse = await response.json();
+    const countries = result.data.objects;
+
+    allCountries.push(...countries);
+
+    // Stop when the last page is reached
+    if (countries.length < limit) {
+      break;
+    }
+
+    // Move to the next page
+    offset += limit;
   }
 
-  const result: CountriesResponse = await response.json();
-
-  return result.data.objects;
+  return allCountries;
 }
 
 // Fetch one country by its two-letter code
@@ -64,6 +79,11 @@ export async function getCountryByCode(
   });
 
   if (!response.ok) {
+    // A missing country should show the 404 page
+    if (response.status === 404) {
+      return null;
+    }
+
     throw new Error(`API error ${response.status}`);
   }
 

@@ -49,7 +49,7 @@ export default function CountryList({ countries }: CountryListProps) {
       </div>
 
       <p className={styles.searchInfo}>
-        Search works among {countries.length} loaded countries.
+        Search among {countries.length} available countries and territories.
       </p>
 
       {filteredCountries.length === 0 ? (

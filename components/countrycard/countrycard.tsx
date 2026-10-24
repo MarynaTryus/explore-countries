@@ -6,8 +6,9 @@ type CountryCardProps = {
   country: Country;
 };
 
-// Display information about one country
 export default function CountryCard({ country }: CountryCardProps) {
+  const countryCode = country.codes?.alpha_2;
+
   return (
     <article className={styles.card}>
       <div className={styles.flag} aria-hidden="true">
@@ -16,9 +17,13 @@ export default function CountryCard({ country }: CountryCardProps) {
 
       <h2>{country.names.common}</h2>
 
-      <p>Region: {country.region}</p>
+      <p>Region: {country.region || "Unknown"}</p>
 
-      <Link href={`/countries/${country.codes.alpha_2}`}>View details →</Link>
+      {countryCode ? (
+        <Link href={`/countries/${countryCode}`}>View details →</Link>
+      ) : (
+        <p>Details unavailable</p>
+      )}
     </article>
   );
 }

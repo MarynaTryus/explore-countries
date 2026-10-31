@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Explore Countries
 
-## Getting Started
+Explore Countries is a website where users can discover countries and territories around the world.
 
-First, run the development server:
+The website is made for people who want to learn basic information about different countries in a simple way.
+
+## Features
+
+- View a list of countries and territories.
+- Search for countries by name.
+- Load more countries with the "Show more" button.
+- Open a details page for a country.
+- See information such as region, capital, population and time zones.
+- Use the website on desktop and mobile screens.
+
+## Technologies
+
+This project uses:
+
+- Next.js
+- React
+- TypeScript
+- CSS Modules
+- REST Countries API
+
+## Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/MarynaTryus/explore-countries.git
+```
+
+2. Open the project folder:
+
+```bash
+cd explore-countries
+```
+
+3. Install dependencies:
+
+```bash
+npm install
+```
+
+4. Create a file named `.env.local` in the project folder and add:
+
+```env
+REST_COUNTRIES_API_KEY=your_api_key_here
+```
+
+You need your own API key from REST Countries. The API key is private and must not be uploaded to GitHub.
+
+5. Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+6. Open `http://localhost:3000` in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## API
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The website uses the REST Countries API:
 
-## Learn More
+https://restcountries.com/
 
-To learn more about Next.js, take a look at the following resources:
+The API provides information about countries and territories.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The free plan allows a maximum of 100 countries per request. To load all available countries, the website uses pagination with `limit` and `offset`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Known limitations
 
-## Deploy on Vercel
+- Some countries or territories have missing information.
+- Abkhazia does not have an `alpha_2` code in the API response. The website shows "Details unavailable" instead of a broken link.
+- The website needs an internet connection and a valid API key to load country data.
+- Country information depends on the data provided by the external API.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Author
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Created by Maryna as a school project at Gokstad Akademi.

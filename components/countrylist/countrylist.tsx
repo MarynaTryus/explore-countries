@@ -60,7 +60,10 @@ export default function CountryList({ countries }: CountryListProps) {
         <>
           <div className={styles.grid}>
             {visibleCountries.map((country) => (
-              <CountryCard key={country.codes.alpha_2} country={country} />
+              <CountryCard
+                key={country.codes?.alpha_2 || country.names.common}
+                country={country}
+              />
             ))}
           </div>
 
